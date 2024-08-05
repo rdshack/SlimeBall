@@ -1,0 +1,137 @@
+enum CollisionLayer
+{
+    Pawn,
+    Ball,
+    TerrainAll,
+    TerrainBall,
+    TerrainPawn
+}
+
+enum StaticGeoCollisionResponse
+{
+	Slide,
+	Bounce
+}
+
+component PositionComponent
+{  
+	posX: int;
+	posY: int;
+}
+
+component RotationComponent
+{  
+	rot: fix64;
+}
+
+component VelocityComponent
+{  
+	veloX: int;
+	veloY: int;
+	maxSpeed : int;
+}
+
+component RotationVelocityComponent
+{  
+	rotVelo: fix64;
+}
+
+component TimeComponent
+{  
+	deltaTimeMs: int;
+}
+
+component BallMovementComponent
+{
+    maxFallSpeed : int;
+    bounceDampening : int;
+}
+
+component GravityComponent
+{
+    gravity : int;
+    veloToApply : int;
+    grounded : bool;
+}
+
+component CircleColliderComponent
+{  
+	drag : int;
+	angularDrag : int;
+	radius : int;
+	mass : int;
+    geoCollisionResponse : StaticGeoCollisionResponse;
+    layer : CollisionLayer;
+}
+
+component PlayerMovementComponent
+{ 
+    maxSpeedX : int;
+    maxFallSpeed : int;
+    movementVeloToApply : int;
+	lastJumpFrame: int;
+}
+
+component PlayerOwnedComponent
+{  
+	[key]
+	playerId: int;
+}
+
+component RequestDestroyComponent
+{
+	destroy : bool;
+}
+
+enum GamePhase
+{
+	WaitingForAllPlayers,
+	WaitingForServe,
+	PointInPlay,
+	ScoreResolution,
+	GameOver
+}
+
+[singleton]
+component GameComponent
+{
+	gamePhase : GamePhase;
+	leftPlayerScore : int;
+	rightPlayerScore : int;
+	leftPlayerPawn : entityId;
+	rightPlayerPawn : entityId;
+	ball : entityId;
+	mostRecentPointWasLeft : bool;
+}
+
+enum CollisionType
+{
+	BallStatic,
+	BallBall
+}
+
+enum StaticColliderType
+{
+	Floor,
+	Wall,
+	InvisibleSeperator,
+	Net
+}
+
+[singleframe]
+component CollisionEventComponent
+{
+	collisionObjAEntity : entityId;
+	collisionObjBEntity : entityId;
+	collisionObjAPos : fix64Vec2;
+	collisionObjBPos : fix64Vec2;
+	collisionType : CollisionType;
+	staticCollisionType : StaticColliderType;
+}
+
+[singleframe]
+component PawnSpawnEventComponent
+{
+	newPawn : entityId;
+	playerId : int;
+}

@@ -1,0 +1,42 @@
+
+alias Slime
+{  
+	PositionComponent,
+	VelocityComponent,
+	TimeComponent,
+	PlayerOwnedComponent,
+	PlayerMovementComponent,
+	CircleColliderComponent,
+	GravityComponent
+}
+
+alias Ball
+{
+	PositionComponent,
+	RotationComponent,
+	VelocityComponent,
+	RotationVelocityComponent,
+	BallMovementComponent,
+	GravityComponent,
+	CircleColliderComponent,
+	TimeComponent
+}
+
+[input(PlayerOwnedComponent)]
+alias PlayerInput
+{
+	PlayerOwnedComponent,
+	PlayerInputComponent
+}
+
+[input(PlayerOwnedComponent)]
+alias AddPlayerInput
+{
+	PlayerOwnedComponent,
+	CreateNewPlayerInputComponent
+}
+
+alias CollisionEvent
+{
+	CollisionEventComponent
+}

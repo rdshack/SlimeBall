@@ -1,0 +1,11 @@
+component PlayerInputComponent
+{  
+	moveInputX: int;
+	moveInputY: int;
+	jumpPressed: bool;
+}
+
+component CreateNewPlayerInputComponent
+{  
+	playerId: int;
+}

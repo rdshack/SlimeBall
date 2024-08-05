@@ -1,0 +1,107 @@
+namespace FlatComponents;
+struct Float2
+{
+	x : float;
+	y : float;
+}
+struct Float3
+{
+	x : float;
+	y : float;
+	z : float;
+}
+struct Fix64Vec2
+{
+	x : long;
+	y : long;
+}
+struct Fix64Vec3
+{
+	x : long;
+	y : long;
+	z : long;
+}
+struct Int2
+{
+	x : int;
+	y : int;
+}
+struct Int3
+{
+	x : int;
+	y : int;
+	z : int;
+}
+table PositionComponent
+{
+	posX : int;	posY : int;}
+table RotationComponent
+{
+	rot : long;}
+table VelocityComponent
+{
+	veloX : int;	veloY : int;	maxSpeed : int;}
+table RotationVelocityComponent
+{
+	rotVelo : long;}
+table TimeComponent
+{
+	deltaTimeMs : int;}
+table BallMovementComponent
+{
+	maxFallSpeed : int;	bounceDampening : int;}
+table GravityComponent
+{
+	gravity : int;	veloToApply : int;	grounded : bool;}
+table CircleColliderComponent
+{
+	drag : int;	angularDrag : int;	radius : int;	mass : int;	geoCollisionResponse : byte;	layer : byte;}
+table PlayerMovementComponent
+{
+	maxSpeedX : int;	maxFallSpeed : int;	movementVeloToApply : int;	lastJumpFrame : int;}
+table PlayerOwnedComponent
+{
+	playerId : int;}
+table RequestDestroyComponent
+{
+	destroy : bool;}
+table GameComponent
+{
+	gamePhase : byte;	leftPlayerScore : int;	rightPlayerScore : int;	leftPlayerPawn : ulong;	rightPlayerPawn : ulong;	ball : ulong;	mostRecentPointWasLeft : bool;}
+table CollisionEventComponent
+{
+	collisionObjAEntity : ulong;	collisionObjBEntity : ulong;	collisionObjAPos : Fix64Vec2;	collisionObjBPos : Fix64Vec2;	collisionType : byte;	staticCollisionType : byte;}
+table PawnSpawnEventComponent
+{
+	newPawn : ulong;	playerId : int;}
+table PlayerInputComponent
+{
+	moveInputX : int;	moveInputY : int;	jumpPressed : bool;}
+table CreateNewPlayerInputComponent
+{
+	playerId : int;}
+table ComponentSet
+{
+	positionComponent : PositionComponent;
+	rotationComponent : RotationComponent;
+	velocityComponent : VelocityComponent;
+	rotationVelocityComponent : RotationVelocityComponent;
+	timeComponent : TimeComponent;
+	ballMovementComponent : BallMovementComponent;
+	gravityComponent : GravityComponent;
+	circleColliderComponent : CircleColliderComponent;
+	playerMovementComponent : PlayerMovementComponent;
+	playerOwnedComponent : PlayerOwnedComponent;
+	requestDestroyComponent : RequestDestroyComponent;
+	gameComponent : GameComponent;
+	collisionEventComponent : CollisionEventComponent;
+	pawnSpawnEventComponent : PawnSpawnEventComponent;
+	playerInputComponent : PlayerInputComponent;
+	createNewPlayerInputComponent : CreateNewPlayerInputComponent;
+}
+table NewEntityData
+{
+	entityId : ulong;
+	stateHash : int;
+}
+table FrameData{  nextEntityId : ulong;  frameNum : int;  newEntities : [NewEntityData];  entityIds : [ulong];  componentState : [ComponentSet];}table InputData{  frameNum : int;  componentState : [ComponentSet];}table FrameSyncData{  frameNum : int;  fullStateHash : int;  inputState : [ComponentSet];}
